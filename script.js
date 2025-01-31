@@ -1,35 +1,26 @@
-const productos = [
-  {
-    titulo: "Gorra Streetwear",
-    descripcion: "Estilo urbano, perfecta para cualquier ocasión.",
-    precio: 19.99,
-    imagen: "images/gorra.jpg",
-  },
-  {
-    titulo: "Camiseta Oversize",
-    descripcion: "Camiseta cómoda para un look relajado.",
-    precio: 24.99,
-    imagen: "images/camiseta.jpg",
-  },
-  {
-    titulo: "Sudadera Hoodie",
-    descripcion: "Sudadera con capucha ideal para el frío.",
-    precio: 39.99,
-    imagen: "images/hoodie.jpg",
-  },
+
+const products = [
+    { name: "Camiseta Casual", price: "$20", img: "https://via.placeholder.com/150" },
+    { name: "Pantalón Elegante", price: "$35", img: "https://via.placeholder.com/150" },
+    { name: "Zapatillas Deportivas", price: "$50", img: "https://via.placeholder.com/150" },
 ];
 
-const contenedorProductos = document.getElementById("productos");
+function loadProducts() {
+    const productGrid = document.querySelector('.product-grid');
+    products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+        `;
+        productGrid.appendChild(productDiv);
+    });
+}
 
-productos.forEach((producto) => {
-  const div = document.createElement("div");
-  div.className = "producto";
-  div.innerHTML = `
-    <img src="${producto.imagen}" alt="${producto.titulo}">
-    <h3>${producto.titulo}</h3>
-    <p>${producto.descripcion}</p>
-    <p><strong>$${producto.precio.toFixed(2)} USD</strong></p>
-    <a href="#">Agregar al Carrito</a>
-  `;
-  contenedorProductos.appendChild(div);
-});
+function explorar() {
+    window.location.href = "#products";
+}
+
+// Cargar productos al iniciar
+document.addEventListener("DOMContentLoaded", loadProducts);
